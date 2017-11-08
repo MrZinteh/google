@@ -7,7 +7,7 @@ exports.factsAboutGoogle = (request, response) => {
 
   // Create functions to handle requests here
   function tellFact (app) {
-      let fact = DEFAULT_FACT;
+      let fact = 'Google is awesome!';
       let factCategory = 
         app.getArgument('fact-category');
       if (factCategory === 'history') {
@@ -22,13 +22,20 @@ exports.factsAboutGoogle = (request, response) => {
             ' Google\'s history or headquarters?')
             .addBasicCard(
                 app.buildBasicCard(fact)
-                    .setImage(GOOGLE_IMG_SRC, IMG_ALT_TEXT)))
+                    .setImage('http://s3.amazonaws.com/digitaltrends-uploads-prod/2015/02/google-headquarters.jpg', 'Gooooooooogle')))
             .addSuggestions(['History', 'Headquarters']);
       } else {
           app.ask('Here\'s a fact for you. ' + fact + 
             ' Which one do you want to hear about next, ' +
             ' Google\'s history or headquarters?');
       }
+  }
+  
+  function getRandomHistoryFact() {
+      return 'Google\'s history is awesome';
+  }
+  function getRandomHQFact() {
+      return 'Google\'s HQ is awesome, it has bikes';
   }
   const actionMap = new Map();
   actionMap.set('tell.fact', tellFact);
